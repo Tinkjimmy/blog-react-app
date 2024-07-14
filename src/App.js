@@ -14,13 +14,13 @@ function App() {
      
      
       <Routes>
-        <Route path="/blog-it-app" element={<Home />} />
-        <Route path="/blog-it-app/login" element={<Login />} />
-        <Route path="/blog-it-app/register" element={<Register />} />
-        <Route path="/blog-it-app/main" element={<MainUserPage />} />
-        <Route path="/blog-it-app/profile" element={<Profile />} />
-        <Route path="/blog-it-app/article" element={<Article />} />
-        <Route path="/blog-it-app/write" element={<Writing />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/main" element={<MainUserPage />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/article" element={<Article />} />
+        <Route path="/write" element={<Writing />} />
       </Routes>
    
       

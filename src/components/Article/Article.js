@@ -5,7 +5,7 @@ const Article = (props) => {
   return (
     <div>
      <h1>hei</h1>
-     <Link to="/blog-it-app/main">Main Page</Link>
+     <Link to="/main">Main Page</Link>
     </div>
   )
 }
