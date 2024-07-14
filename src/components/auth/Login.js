@@ -15,7 +15,7 @@ function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
-        navigate("/main"); //navigate to the user's main page
+        navigate("/blog-react-app/main"); //navigate to the user's main page
       })
       .catch((error) => {
         console.log(error);

@@ -73,12 +73,12 @@ const fileInputRef =useRef(null)
   return (
     <div className="register-body">
       <header className="registration-header">
-        <h1 className="registration-home-link"><Link className="registration-app-name" to="/">
+        <h1 className="registration-home-link"><Link className="registration-app-name" to="/blog-react-app">
           Blog.it
         </Link></h1>
 
         <h2 className="registration-title">Sign Up</h2>
-        <Link className="registration-link-home" to="/">
+        <Link className="registration-link-home" to="/blog-react-app">
           Home
         </Link>
       </header>
