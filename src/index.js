@@ -7,10 +7,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const basename = process.env.NODE_ENV === "development" ? "/" : "/blog-react-app";
 root.render(
   
   <React.StrictMode>
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={basename}>
      <App />
    </BrowserRouter>
   </React.StrictMode>
