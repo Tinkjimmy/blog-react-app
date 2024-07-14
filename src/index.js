@@ -7,7 +7,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const basename = process.env.NODE_ENV === "development" ? "/" : "/blog-it-app";
+const basename = process.env.NODE_ENV === "development" ? "/" : "/";
 root.render(
   
   <React.StrictMode>
