@@ -20,7 +20,7 @@ function Post(props) {
         ></img>
         <p className="post-author">{props.author}</p>
       </div>
-      <p className="post-text"> {abstract}...   <Link className="Article-link" to="/article">Read more</Link></p>
+      <p className="post-text"> {abstract}...   <Link className="Article-link" to="/blog-it-app/article">Read more</Link></p>
       
 
       <div className="bottom-div">

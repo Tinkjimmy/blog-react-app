@@ -226,7 +226,7 @@ function MainUserPage() {
   }, [userData]);
 
   function toProfile() {
-    navigate("/profile", { state: { userData } });
+    navigate("/blog-it-app/profile", { state: { userData } });
   }
 
   return (
@@ -236,7 +236,7 @@ function MainUserPage() {
         {/* eventually an image with the name and logo */}
         <div className="header-user-features">
           {userData && (
-            <Link to="/write" className="write-link" state={{ userData }}>
+            <Link to="/blog-it-app/write" className="write-link" state={{ userData }}>
               Write
             </Link>
           )}

@@ -17,7 +17,7 @@ function Profile() {
         <h1 className="app-title">Blog.it</h1>
 
         <div className="header-user-features-profile">
-          <Link to="/main" className="main-page-link">
+          <Link to="/blog-it-app/main" className="main-page-link">
             Main Page
           </Link>
           <AuthDetails />

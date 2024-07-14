@@ -39,7 +39,7 @@ function Home() {
           <button className="login-btn" onClick={toggleModal}>
             Login
           </button>
-          <Link className="link register" to="/blog-react-app/register">
+          <Link className="link register" to="/blog-it-app/register">
             Get Started
           </Link>
         </div>
@@ -50,7 +50,7 @@ function Home() {
         <div className="image-container"></div>
         <div className="text-container">
           <h1 className="overlay-text">Tell Your Story To The World!</h1>
-          <Link className="overlay-text2" to="/blog-react-app/register">
+          <Link className="overlay-text2" to="/blog-it-app/register">
             Get Started
           </Link>
         </div>

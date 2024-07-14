@@ -68,17 +68,17 @@ function Writing() {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
-      navigate("/main");
+      navigate("/blog-it-app/main");
     } catch (error) {
       console.error("Error updating post: ", error);
     }
   };
 
   function toProfile() {
-    navigate("/profile", { state: { userData } });
+    navigate("/blog-it-app/profile", { state: { userData } });
   }
   function toHome(){
-    navigate("/")
+    navigate("/blog-it-app")
   }
   
   return (
@@ -89,7 +89,7 @@ function Writing() {
         
         <div className="header-user-features-write">
           
-          <Link className="registration-link-home" to="/main">
+          <Link className="registration-link-home" to="/blog-it-app/main">
           Home
         </Link>
           <AuthDetails />
