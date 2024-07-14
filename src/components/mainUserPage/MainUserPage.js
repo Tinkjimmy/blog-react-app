@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import { db, storage } from "../../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import React, { useState, useEffect } from "react";
+import { db } from "../../firebase";
+
 import {
   collection,
   query,
   where,
   doc,
-  arrayUnion,
+  
   updateDoc,
   onSnapshot,
 } from "firebase/firestore";
@@ -15,19 +15,18 @@ import { auth } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import Post from "../post/Post";
 import "./main.css";
-import { v4 as uuidv4 } from "uuid";
+
 import { Link, useNavigate } from "react-router-dom";
 
 function MainUserPage() {
   const [authUser, setAuthUser] = useState(null);
   const [userData, setUserdata] = useState(null);
   const [allPosts, setAllPosts] = useState([]);
-  const [currentPost, setCurrentPost] = useState("");
+ 
   const [postElements, setPostElements] = useState([]);
-  const [currentTitle, setCurrentTitle] = useState("");
-  const [currentImage, setCurrentImage] = useState(null);
+  ;
 
-  const fileInputRef = useRef(null); // Reference for the file input
+ 
   const navigate = useNavigate();
   useEffect(() => {
     // Callback function to be executed when authentication state changes
@@ -122,57 +121,57 @@ function MainUserPage() {
   }, []);
 
   // Function to handle post submission
-  const handlePostSubmit = async (e) => {
-    e.preventDefault();
+  // const handlePostSubmit = async (e) => {
+  //   e.preventDefault();
 
-    if (currentPost.trim() === "") {
-      console.log("Post content is empty");
-      return; // It immediately exits the function using the return statement, preventing the rest of the code inside the function (handlePostSubmit) from executing.
-    }
-    let imageUrl = "";
+  //   if (currentPost.trim() === "") {
+  //     console.log("Post content is empty");
+  //     return; // It immediately exits the function using the return statement, preventing the rest of the code inside the function (handlePostSubmit) from executing.
+  //   }
+  //   let imageUrl = "";
 
-    if (currentImage) {
-      try {
-        const storageRef = ref(storage, `images/${currentImage.name}`);
-        const snapshot = await uploadBytes(storageRef, currentImage);
-        imageUrl = await getDownloadURL(snapshot.ref);
-      } catch (error) {
-        console.error("Error uploading image: ", error);
-        return;
-      }
-    }
+  //   if (currentImage) {
+  //     try {
+  //       const storageRef = ref(storage, `images/${currentImage.name}`);
+  //       const snapshot = await uploadBytes(storageRef, currentImage);
+  //       imageUrl = await getDownloadURL(snapshot.ref);
+  //     } catch (error) {
+  //       console.error("Error uploading image: ", error);
+  //       return;
+  //     }
+  //   }
 
-    // Create new post object with text and timestamp
-    const newPost = {
-      id: uuidv4(),
-      title: currentTitle,
-      text: currentPost,
-      timestamp: new Date(),
-      image: imageUrl,
-      author: userData.username,
-      userphoto: userData.profileImage,
-    };
+  //   // Create new post object with text and timestamp
+  //   const newPost = {
+  //     id: uuidv4(),
+  //     title: currentTitle,
+  //     text: currentPost,
+  //     timestamp: new Date(),
+  //     image: imageUrl,
+  //     author: userData.username,
+  //     userphoto: userData.profileImage,
+  //   };
 
-    try {
-      // Reference to the user's document in the database
-      const userDocRef = doc(db, "users", userData.id);
+  //   try {
+  //     // Reference to the user's document in the database
+  //     const userDocRef = doc(db, "users", userData.id);
 
-      // Update the user's document by adding the new post to the posts array
-      await updateDoc(userDocRef, {
-        posts: arrayUnion(newPost),
-      });
+  //     // Update the user's document by adding the new post to the posts array
+  //     await updateDoc(userDocRef, {
+  //       posts: arrayUnion(newPost),
+  //     });
 
-      console.log("Post updated successfully");
-      setCurrentPost("");
-      setCurrentTitle("");
-      setCurrentImage(null);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
-    } catch (error) {
-      console.error("Error updating post: ", error);
-    }
-  };
+  //     console.log("Post updated successfully");
+  //     setCurrentPost("");
+  //     setCurrentTitle("");
+  //     setCurrentImage(null);
+  //     if (fileInputRef.current) {
+  //       fileInputRef.current.value = "";
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating post: ", error);
+  //   }
+  // };
 
   // Function to handle post deletion
   const handleDeletePost = async (postId) => {
@@ -227,7 +226,7 @@ function MainUserPage() {
   }, [userData]);
 
   function toProfile() {
-    navigate("/blog-react-app/profile", { state: { userData } });
+    navigate("/profile", { state: { userData } });
   }
 
   return (
@@ -237,7 +236,7 @@ function MainUserPage() {
         {/* eventually an image with the name and logo */}
         <div className="header-user-features">
           {userData && (
-            <Link to="/blog-react-app/write" className="write-link" state={{ userData }}>
+            <Link to="/write" className="write-link" state={{ userData }}>
               Write
             </Link>
           )}
@@ -246,12 +245,12 @@ function MainUserPage() {
           {userData ? (
             <img
               className="profile-img"
-              alt="profile image"
+              alt="profil iage"
               src={userData.profileImage}
               onClick={toProfile}
             ></img>
           ) : (
-            <img className="profile-img" alt="profile image"></img>
+            <img className="profile-img" alt="profle iage"></img>
           )}
         </div>
       </header>

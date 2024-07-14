@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore"; // Import Firestore
-import { getStorage, ref } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,11 +30,11 @@ export const storage = getStorage();
 // Create a storage reference from our storage service
 
 // Create a child reference
-const imagesRef = ref(storage, 'images');
+// const imagesRef = ref(storage, 'images');
 // imagesRef now points to 'images'
 
 // Child references can also take paths delimited by '/'
-const spaceRef = ref(storage, 'images/space.jpg');
+// const spaceRef = ref(storage, 'images/space.jpg');
 // spaceRef now points to "images/space.jpg"
 // imagesRef still points to "images"
 

@@ -14,13 +14,13 @@ function App() {
      
      
       <Routes>
-        <Route path="/blog-react-app" element={<Home />} />
-        <Route path="/blog-react-app/login" element={<Login />} />
-        <Route path="/blog-react-app/register" element={<Register />} />
-        <Route path="/blog-react-app/main" element={<MainUserPage />} />
-        <Route path="/blog-react-app/profile" element={<Profile />} />
-        <Route path="/blog-react-app/article" element={<Article />} />
-        <Route path="/blog-react-app/write" element={<Writing />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/main" element={<MainUserPage />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/article" element={<Article />} />
+        <Route path="/write" element={<Writing />} />
       </Routes>
    
       

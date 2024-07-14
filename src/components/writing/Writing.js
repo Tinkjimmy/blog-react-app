@@ -68,17 +68,17 @@ function Writing() {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
-      navigate("/blog-react-app/main");
+      navigate("/main");
     } catch (error) {
       console.error("Error updating post: ", error);
     }
   };
 
   function toProfile() {
-    navigate("/blog-react-app/profile", { state: { userData } });
+    navigate("/profile", { state: { userData } });
   }
   function toHome(){
-    navigate("/blog-react-app")
+    navigate("/")
   }
   
   return (
@@ -89,7 +89,7 @@ function Writing() {
         
         <div className="header-user-features-write">
           
-          <Link className="registration-link-home" to="/blog-react-app/main">
+          <Link className="registration-link-home" to="/main">
           Home
         </Link>
           <AuthDetails />
@@ -97,12 +97,12 @@ function Writing() {
           {userData ? (
             <img
               className="profile-img"
-              alt="profile image"
+              alt="mage"
               src={userData.profileImage}
               onClick={toProfile}
             ></img>
           ) : (
-            <img className="profile-img" alt="profile image"></img>
+            <img className="profile-img" alt="proile ige"></img>
           )}
         </div>
       </header>

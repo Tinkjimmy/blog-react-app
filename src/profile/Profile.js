@@ -17,7 +17,7 @@ function Profile() {
         <h1 className="app-title">Blog.it</h1>
 
         <div className="header-user-features-profile">
-          <Link to="/blog-react-app/main" className="main-page-link">
+          <Link to="/main" className="main-page-link">
             Main Page
           </Link>
           <AuthDetails />
@@ -40,7 +40,7 @@ function Profile() {
         <div className="right-profile-section">
           <img
             className="profile-img"
-            alt="profile image"
+            alt="imge of the user"
             src={userData.profileImage}
           ></img>
 
