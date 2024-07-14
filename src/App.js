@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
 import Home from "./components/home/Home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
      
-     <Router basename="/<repository-name>">
+     
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -22,7 +22,7 @@ function App() {
         <Route path="/article" element={<Article />} />
         <Route path="/write" element={<Writing />} />
       </Routes>
-    </Router>
+   
       
     </>
   );
