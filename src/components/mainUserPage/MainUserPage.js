@@ -120,58 +120,7 @@ function MainUserPage() {
     return () => unsubscribe();
   }, []);
 
-  // Function to handle post submission
-  // const handlePostSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   if (currentPost.trim() === "") {
-  //     console.log("Post content is empty");
-  //     return; // It immediately exits the function using the return statement, preventing the rest of the code inside the function (handlePostSubmit) from executing.
-  //   }
-  //   let imageUrl = "";
-
-  //   if (currentImage) {
-  //     try {
-  //       const storageRef = ref(storage, `images/${currentImage.name}`);
-  //       const snapshot = await uploadBytes(storageRef, currentImage);
-  //       imageUrl = await getDownloadURL(snapshot.ref);
-  //     } catch (error) {
-  //       console.error("Error uploading image: ", error);
-  //       return;
-  //     }
-  //   }
-
-  //   // Create new post object with text and timestamp
-  //   const newPost = {
-  //     id: uuidv4(),
-  //     title: currentTitle,
-  //     text: currentPost,
-  //     timestamp: new Date(),
-  //     image: imageUrl,
-  //     author: userData.username,
-  //     userphoto: userData.profileImage,
-  //   };
-
-  //   try {
-  //     // Reference to the user's document in the database
-  //     const userDocRef = doc(db, "users", userData.id);
-
-  //     // Update the user's document by adding the new post to the posts array
-  //     await updateDoc(userDocRef, {
-  //       posts: arrayUnion(newPost),
-  //     });
-
-  //     console.log("Post updated successfully");
-  //     setCurrentPost("");
-  //     setCurrentTitle("");
-  //     setCurrentImage(null);
-  //     if (fileInputRef.current) {
-  //       fileInputRef.current.value = "";
-  //     }
-  //   } catch (error) {
-  //     console.error("Error updating post: ", error);
-  //   }
-  // };
+  
 
   // Function to handle post deletion
   const handleDeletePost = async (postId) => {
@@ -232,7 +181,7 @@ function MainUserPage() {
   return (
     <div className="main-user-page">
       <header className="header-mainpage">
-        <h1 className="app-title">Blog.it</h1>
+        <h1 className="app-title app-title-main">Blog.it</h1>
         {/* eventually an image with the name and logo */}
         <div className="header-user-features">
           {userData && (
@@ -244,7 +193,7 @@ function MainUserPage() {
           
           {userData ? (
             <img
-              className="profile-img"
+              className="profile-img profile-img-nav"
               alt="profil iage"
               src={userData.profileImage}
               onClick={toProfile}

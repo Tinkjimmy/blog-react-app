@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import { db, storage } from "../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, arrayUnion, updateDoc } from "firebase/firestore";
@@ -13,13 +13,25 @@ function Writing() {
   const [currentPost, setCurrentPost] = useState("");
   const [currentTitle, setCurrentTitle] = useState("");
   const [currentImage, setCurrentImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [allFilled,setAllFilled]=useState(false)
   const fileInputRef = useRef(null);
 
   const navigate = useNavigate();
   const location = useLocation();
   const { userData } = location.state;
-  const userNameAuthor = userData.username;
-  const userIdentity = userData.id;
+  let userNameAuthor = userData.username;
+  let userIdentity = userData.id;
+  let userProfileImage = userData.profileImage
+
+  useEffect(() => {
+    if (currentTitle && currentPost && currentImage) {
+      setAllFilled(true);
+    } else {
+      setAllFilled(false);
+    }
+  }, [currentTitle, currentPost, currentImage]);
+
 
   // Function to handle post submission
   const handlePostSubmit = async (e) => {
@@ -50,6 +62,7 @@ function Writing() {
       timestamp: new Date(),
       image: imageUrl,
       author: userNameAuthor,
+      userphoto: userProfileImage,
     };
 
     try {
@@ -65,6 +78,8 @@ function Writing() {
       setCurrentPost("");
       setCurrentTitle("");
       setCurrentImage(null);
+      setImagePreview(null);
+      setAllFilled(false)
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
@@ -73,12 +88,18 @@ function Writing() {
       console.error("Error updating post: ", error);
     }
   };
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setCurrentImage(file);
+    setImagePreview(URL.createObjectURL(file)); // Set image preview
+  };
+
 
   function toProfile() {
     navigate("/profile", { state: { userData } });
   }
   function toHome(){
-    navigate("/")
+    navigate("/main")
   }
   
   return (
@@ -89,14 +110,12 @@ function Writing() {
         
         <div className="header-user-features-write">
           
-          <Link className="registration-link-home" to="/main">
-          Home
-        </Link>
+          
           <AuthDetails />
           
           {userData ? (
             <img
-              className="profile-img"
+              className="profile-img profile-img-nav"
               alt="mage"
               src={userData.profileImage}
               onClick={toProfile}
@@ -108,7 +127,7 @@ function Writing() {
       </header>
       <form className="write-form" onSubmit={handlePostSubmit}>
         <input
-          className="main-page-input title-input"
+          className="write-page-input title-input"
           type="text"
           name="title"
           value={currentTitle}
@@ -120,7 +139,7 @@ function Writing() {
         ></input>
         <textarea
           placeholder="Let's write something.."
-          className="main-page-input  text-body"
+          className="write-page-input  text-body"
           name="post"
           id="post"
           value={currentPost}
@@ -137,14 +156,22 @@ function Writing() {
           id="images"
           accept="image/*"
           ref={fileInputRef}
-          onChange={(e) => {
-            setCurrentImage(e.target.files[0]);
-          }}
+          onChange={handleImageChange}
           required
         ></input>
+        {imagePreview && (
+            <img
+              src={imagePreview}
+              alt="Preview"
+              className="image-preview"
+            />
+          )}
         </label>
 
-        <button className="post-button" type="submit">
+        <button
+          className={`post-button ${allFilled ? "active" : ""}`}
+          type="submit"
+        >
           Post
         </button>
       </form>

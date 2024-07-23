@@ -3,14 +3,14 @@ import "./post.css";
 import { Link } from "react-router-dom";
 //need to ad a delete button
 function Post(props) {
-  const abstract = props.text ? props.text.substring(0, 100) : "";
-
+  
 
   
   return (
     <div className="post-section">
-     <div>
-      {props.img ? <img className="post-image" src={props.img} alt="ime related to" /> : ""}</div>
+     <div className="post-image-div">
+      {props.img ? <img className="post-image" src={props.img} alt="ime related to" /> : ""}
+      </div>
       <h3 className="post-title">{props.title}</h3>
       <div className="user-info">
         <img
@@ -20,8 +20,9 @@ function Post(props) {
         ></img>
         <p className="post-author">{props.author}</p>
       </div>
-      <p className="post-text"> {abstract}...   <Link className="Article-link" to="/article">Read more</Link></p>
-      
+      <div className="post-text-div">
+      <p className="post-text">  {props.text}  </p>
+      </div>
 
       <div className="bottom-div">
         <p className="post-date">{props.time}</p>

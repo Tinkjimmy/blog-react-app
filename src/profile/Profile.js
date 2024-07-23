@@ -5,21 +5,30 @@ import { Link, useLocation } from "react-router-dom";
 import Contacts from "./Contacts";
 import { useState } from "react";
 import Articles from "./Articles";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const [showContacts, setShowContacts] = useState(false);
   const location = useLocation();
   const { userData } = location.state;
   let userNameUser = userData.username;
+  const navigate = useNavigate();
+
+  function toHome(){
+    navigate("/main")
+  }
   return (
     <>
       <header className="profile-header">
-        <h1 className="app-title">Blog.it</h1>
+       <h1 className="app-title" onClick={toHome}>Blog.it</h1>
 
         <div className="header-user-features-profile">
-          <Link to="/main" className="main-page-link">
-            Main Page
-          </Link>
+        {userData && (
+            <Link to="/write" className="write-link" state={{ userData }}>
+              Write
+            </Link>
+          )}
+          
           <AuthDetails />
         </div>
       </header>
@@ -44,7 +53,7 @@ function Profile() {
             src={userData.profileImage}
           ></img>
 
-          <h2 className="profile-img">{userNameUser}</h2>
+          <h2 >{userNameUser}</h2>
          {userData.bio ? <p>{userData.bio}</p> : <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nulla facilisi. Donec vel mauris quam. Nulla dapibus, velit vel facilisis hendrerit, elit massa condimentum elit, sed malesuada lectus nisi ut neque. Phasellus a orci nec justo laoreet ultricies. Nulla ac sem et orci fringilla tincidunt.
 
 Sed sit amet urna at arcu dictum volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec laoreet neque sit amet tellus faucibus, et mollis lacus cursus. Etiam feugiat sem at venenatis elementum. Aliquam erat volutpat. Nulla eget orci sed purus egestas volutpat non a enim. Ut et nibh vel ligula ullamcorper placerat. Donec at tristique nisi, et consectetur nisi.

@@ -65,16 +65,16 @@ function Home() {
       </main>
       <footer>
         <p id="footer-text">
-          For this and other projects check out my contacts
+          For this and other projects check out my links
         </p>
         <div classname="social-media">
           <a
             href="https://www.linkedin.com/in/giacomoducawd"
-            class="footer-img"
+            className="footer-img"
           >
             <img src={linkImg} alt="LinkedIn" />
           </a>
-          <a href="https://github.com/Tinkjimmy" class="footer-img">
+          <a href="https://github.com/Tinkjimmy" className="footer-img">
             <img src={gitImg} alt="Github" />
           </a>
         </div>

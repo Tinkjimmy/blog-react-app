@@ -1,5 +1,5 @@
-.post-section {
-  /* padding:15px; */
+/* .post-section {
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,22 +13,99 @@
   padding:20px;
 }
 .post-title{
- font-size: 50px;
+ font-size: 2.5em;
  margin-top: 10px;
  margin-bottom:5px;
  border-bottom: 2px solid rgb(242, 242, 242);
  width: 100%;
+ white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .user-info{
 display: flex;
 margin-bottom:5px;
 
+} */
+ .post-text-div{
+  width: 100%;
+ }
+.post-text{
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
+.post-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  width: 100%; /* Make the section take full width */
+  max-width: 400px; /* Set a maximum width */
+}
+
+.post-title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0.5rem 0;
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis to indicate truncated text */
+  white-space: nowrap; /* Prevent the text from wrapping */
+  width: 100%; /* Make the title take full width of its container */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  width: 100%; /* Make user-info take full width */
+}
+
+/* Add media queries for responsiveness */
+@media (max-width: 768px) {
+  .post-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-title {
+    font-size: 1rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .post-image{
   border-radius: 15px;
-  width: 400px;
-  height: 400px;
+  width: 90%;
+  aspect-ratio: 1 / 1;
 }
 .profile-picture-post{
 margin-right: 15px;
@@ -37,12 +114,7 @@ height: 30px;
 border-radius: 50%;
 align-self: center;
 }
-.post-author{
 
-}
-.post-text{
-
-}
 .Article-link{
 text-decoration: none;
 }

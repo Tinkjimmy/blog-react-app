@@ -78,9 +78,7 @@ const fileInputRef =useRef(null)
         </Link></h1>
 
         <h2 className="registration-title">Sign Up</h2>
-        <Link className="registration-link-home" to="/">
-          Home
-        </Link>
+        
       </header>
 
       <form
