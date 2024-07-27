@@ -18,6 +18,7 @@
 
 }
 
+
 .app-title {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -72,9 +73,11 @@ height: 50px;
   width: 100%;
 }
 .posts-section {
+  display: flex;
+  justify-items: center;
   margin-top: 30px;
   margin-left: 30px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns:50% 50%;
   row-gap: 30px;
 }

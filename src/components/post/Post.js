@@ -1,40 +1,43 @@
 import React from "react";
 import "./post.css";
-import { Link } from "react-router-dom";
-//need to ad a delete button
-function Post(props) {
-  
+import { useNavigate } from "react-router-dom";
 
-  
+function Post({ img, title, userImg, author, text, time, id, handleDelete, idName,currentUserImg }) {
+  const navigate = useNavigate();
+
+  function toArticle() {
+    navigate("/article", { state: { img, title, userImg, author, text, time, id,currentUserImg } });
+  }
+console.log({currentUserImg})
   return (
-    <div className="post-section">
-     <div className="post-image-div">
-      {props.img ? <img className="post-image" src={props.img} alt="ime related to" /> : ""}
+    <div className="post-section" onClick={toArticle}>
+      <div className="post-image-div">
+        {img && <img className="post-image" src={img} alt="Image related to the post" />}
       </div>
-      <h3 className="post-title">{props.title}</h3>
+      <h3 className="post-title">{title}</h3>
       <div className="user-info">
         <img
-        className="profile-picture-post"
-          src={props.userImg}
-          alt="the profile picure of the author of the article"
-        ></img>
-        <p className="post-author">{props.author}</p>
+          className="profile-picture-post"
+          src={userImg}
+          alt="The profile picture of the author of the article"
+        />
+        <p className="post-author">{author}</p>
       </div>
       <div className="post-text-div">
-      <p className="post-text">  {props.text}  </p>
+        <p className="post-text">{text}</p>
       </div>
-
       <div className="bottom-div">
-        <p className="post-date">{props.time}</p>
-        {props.author === props.idName ? (
+        <p className="post-date">{time}</p>
+        {author === idName && (
           <button
-            className="post-btn "
-            onClick={() => props.handleDelete(props.id)}
+            className="post-btn"
+            onClick={(event) => {
+              event.stopPropagation();
+              handleDelete(event, id);
+            }}
           >
             Delete
           </button>
-        ) : (
-          ""
         )}
       </div>
     </div>

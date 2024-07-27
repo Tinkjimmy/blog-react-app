@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Post from '../components/post/Post';
 import { updateDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase';
+import "./articles.css"
 
 function Articles(props) {
   const [userData, setUserData] = useState([props.user]);
@@ -50,6 +51,7 @@ function Articles(props) {
             img={post.image}
             id={post.id}
             handleDelete={handleDeletePost}
+            userImg={post.userphoto}
           />
         );
       }).filter(element => element !== null); // Filter out invalid posts
@@ -61,7 +63,8 @@ function Articles(props) {
 
 
   ///delete posts
-  const handleDeletePost = async (postId) => {
+  const handleDeletePost = async (event,postId) => {
+    event.stopPropagation();
     try {
       const updatedPosts = userData[0].posts.filter((post) => post.id !== postId);
       
@@ -81,7 +84,7 @@ function Articles(props) {
   };
 
   return (
-    <div>
+    <div className='articles-profile-div'>
       {postElements}
     </div>
   );

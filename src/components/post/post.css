@@ -28,31 +28,34 @@ display: flex;
 margin-bottom:5px;
 
 } */
- .post-text-div{
+.post-text-div {
   width: 100%;
- }
-.post-text{
-  white-space: nowrap; 
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+}
+.post-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .post-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  
   padding: 1rem;
   margin: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  width: 100%; /* Make the section take full width */
-  max-width: 400px; /* Set a maximum width */
+  width: 80%;
+ max-width: 700px;
+}
+.post-section:hover {
+  cursor: pointer;
 }
 
 .post-title {
   font-size: 1.5rem;
-  text-align: center;
+  text-align: left;
   margin: 0.5rem 0;
   overflow: hidden; /* Hide overflow text */
   text-overflow: ellipsis; /* Add ellipsis to indicate truncated text */
@@ -80,81 +83,56 @@ margin-bottom:5px;
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.post-image{
+.post-image {
   border-radius: 15px;
   width: 90%;
   aspect-ratio: 1 / 1;
 }
-.profile-picture-post{
-margin-right: 15px;
-width: 30px;
-height: 30px;
-border-radius: 50%;
-align-self: center;
+.profile-picture-post {
+  margin-right: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  align-self: center;
 }
 
-.Article-link{
-text-decoration: none;
+.Article-link {
+  text-decoration: none;
 }
-.Article-link:hover{
+.Article-link:hover {
   text-decoration: underline;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-
-
-.bottom-div{
+.bottom-div {
   display: flex;
-  
+
   width: 100%;
 }
 
-.post-date{
-width: 300px;
+.post-date {
+  width: 300px;
 }
 
 .post-btn {
-    text-align: center;
-    background-color: rgb(237, 244, 241);
-    padding: 5px;
-    
-    width: 100px;
-    align-self: flex-end;
-    border: none;
-    border-radius: 10px;
-    
-    margin-bottom: 10px;
-    margin-left: 35%;
-    /* padding: 10px 20px; */
-    font-size: 16px;
-    background-color: rgb(237, 244, 241);
-    color: rgb(91, 88, 88);
-    cursor: pointer;
-    transition: transform 0.1s ease;
-  }
-  .post-btn:active{
-    transform: scale(0.95);
-  }
-  
+  text-align: center;
+  background-color: rgb(237, 244, 241);
+  padding: 5px;
+
+  width: 100px;
+  align-self: flex-end;
+  border: none;
+  border-radius: 10px;
+
+  margin-bottom: 10px;
+  margin-left: 35%;
+  /* padding: 10px 20px; */
+  font-size: 16px;
+  background-color: rgb(237, 244, 241);
+  color: rgb(91, 88, 88);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+.post-btn:active {
+  transform: scale(0.95);
+}

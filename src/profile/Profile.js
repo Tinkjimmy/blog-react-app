@@ -54,7 +54,7 @@ function Profile() {
           ></img>
 
           <h2 >{userNameUser}</h2>
-         {userData.bio ? <p>{userData.bio}</p> : <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nulla facilisi. Donec vel mauris quam. Nulla dapibus, velit vel facilisis hendrerit, elit massa condimentum elit, sed malesuada lectus nisi ut neque. Phasellus a orci nec justo laoreet ultricies. Nulla ac sem et orci fringilla tincidunt.
+         {userData.bio ? <p>{userData.bio}</p> : <p className="bio-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nulla facilisi. Donec vel mauris quam. Nulla dapibus, velit vel facilisis hendrerit, elit massa condimentum elit, sed malesuada lectus nisi ut neque. Phasellus a orci nec justo laoreet ultricies. Nulla ac sem et orci fringilla tincidunt.
 
 Sed sit amet urna at arcu dictum volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec laoreet neque sit amet tellus faucibus, et mollis lacus cursus. Etiam feugiat sem at venenatis elementum. Aliquam erat volutpat. Nulla eget orci sed purus egestas volutpat non a enim. Ut et nibh vel ligula ullamcorper placerat. Donec at tristique nisi, et consectetur nisi.
 

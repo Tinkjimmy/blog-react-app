@@ -42,7 +42,7 @@
 .app-header {
   display: flex;
   justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.746);
+  background-color: rgb(255, 255, 255);
 
   width: 100%;
   height: 10vh;
@@ -110,6 +110,30 @@
   border-radius: 15px;
   align-items: center;
   background-color: rgba(255, 255, 255, 0);
+}
+
+.add-band {
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  background-color: yellowgreen;
+}
+
+.add-band-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 30s linear infinite;
+  font-size: 20px;
+  margin: 10px 0px 10px 0px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 /* footer */

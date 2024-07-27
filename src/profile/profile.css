@@ -58,8 +58,12 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 
 
 .profile-changable-content{
     margin-top: 20px;
+    
 }
 .profile-username{
     margin-left: 200px;
     font-size: 40px;
+}
+.bio-p{
+  padding-right:20px;
 }

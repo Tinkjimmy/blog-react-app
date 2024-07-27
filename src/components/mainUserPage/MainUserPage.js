@@ -6,7 +6,6 @@ import {
   query,
   where,
   doc,
-  
   updateDoc,
   onSnapshot,
 } from "firebase/firestore";
@@ -22,11 +21,8 @@ function MainUserPage() {
   const [authUser, setAuthUser] = useState(null);
   const [userData, setUserdata] = useState(null);
   const [allPosts, setAllPosts] = useState([]);
- 
-  const [postElements, setPostElements] = useState([]);
-  ;
 
- 
+  const [postElements, setPostElements] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     // Callback function to be executed when authentication state changes
@@ -50,13 +46,10 @@ function MainUserPage() {
       const usersRef = collection(db, "users");
       const q = query(usersRef, where("uid", "==", authUser.uid));
 
-      // Listener for snapshot changes in the query result
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        // Check if query result is not empty
         if (!querySnapshot.empty) {
-          // Get the first document in the query result
           const doc = querySnapshot.docs[0];
-          // Extract data from the document
+
           const data = doc.data();
           // Construct userInfo object with necessary user data
           const userInfo = {
@@ -77,6 +70,19 @@ function MainUserPage() {
           console.log("User document not found.");
         }
       });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       // Cleanup function to unsubscribe from the snapshot listener when component unmounts
       return () => {
@@ -120,23 +126,18 @@ function MainUserPage() {
     return () => unsubscribe();
   }, []);
 
-  
-
   // Function to handle post deletion
-  const handleDeletePost = async (postId) => {
+  const handleDeletePost = async (event, postId) => {
+    event.stopPropagation(); // Ensure the navigation event is not triggered
     try {
       const updatedPosts = userData.posts.filter((post) => post.id !== postId);
-
       const userDocRef = doc(db, "users", userData.id);
-      await updateDoc(userDocRef, {
-        posts: updatedPosts,
-      });
+      await updateDoc(userDocRef, { posts: updatedPosts });
       console.log("Post deleted successfully");
     } catch (error) {
       console.error("Error deleting post: ", error);
     }
   };
-
   // useEffect hook create the components and format and sort user's posts
   useEffect(() => {
     if (allPosts) {
@@ -166,6 +167,8 @@ function MainUserPage() {
               author={post.author}
               idName={userData.username}
               userImg={post.userphoto}
+              // dubbio
+             
             />
           </>
         );
@@ -190,7 +193,7 @@ function MainUserPage() {
             </Link>
           )}
           <AuthDetails />
-          
+
           {userData ? (
             <img
               className="profile-img profile-img-nav"
@@ -204,9 +207,6 @@ function MainUserPage() {
         </div>
       </header>
       <main className="main-content">
-     
-    
-
         <section className="posts-section">
           {userData ? (
             <>

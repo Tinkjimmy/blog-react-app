@@ -45,6 +45,10 @@ function Home() {
         </div>
       </header>
       <body className="home-body">
+      <div className="add-band">
+        <p className="add-band-text">Discover new perspectives and share your story on Blog.it - Where every voice finds a place.</p>
+        
+</div>
       <main className="home-main-container"
       >
         <div className="image-container"></div>
