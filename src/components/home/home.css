@@ -4,6 +4,9 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 }
 
 .home-main-container {
@@ -14,10 +17,14 @@
   display: flex;
 }
 .text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
   width: 100%;
   height: 100%;
   margin-top: 25%;
-  margin-left: 30px;
+
   height: 10vh;
 }
 .overlay-text {
@@ -26,6 +33,7 @@
   margin-left: 100px;
 }
 .overlay-text2 {
+  height:35px;
   color: white;
   font-size: 25px;
   text-decoration: none;
@@ -34,8 +42,8 @@
   border-radius: 20px;
   
   background-color: #545151;
-  text-align: center;
-  margin-left: 43%;
+  
+ 
   
 }
 
