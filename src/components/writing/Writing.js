@@ -148,6 +148,9 @@ function Writing() {
           }}
           required
         />
+
+
+        
 <label for="image" class="drop-container" id="dropcontainer">
         <input
           className="custom-file-upload"

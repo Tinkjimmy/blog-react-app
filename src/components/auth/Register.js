@@ -1,11 +1,10 @@
 import React, { useState, useRef } from "react";
-import { auth, db,storage } from "../../firebase";
+import { auth, db, storage } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
-import { uploadBytes,getDownloadURL, ref } from "firebase/storage";
-
+import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -17,12 +16,11 @@ function Register() {
   const [newsletter, setNewsletter] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
   const [bio, setBio] = useState("");
-  
+  const [currentImage, setCurrentImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
   const navigate = useNavigate();
-const fileInputRef =useRef(null)
-
-
-
+  const fileInputRef = useRef(null);
 
   async function signUp(e) {
     e.preventDefault();
@@ -34,19 +32,18 @@ const fileInputRef =useRef(null)
       );
       const user = userCredential.user;
 
-
       let imageUrl = "";
 
-    if (profilePic) {
-      try {
-        const storageRef = ref(storage, `images/${profilePic.name}`);
-        const snapshot = await uploadBytes(storageRef, profilePic);
-        imageUrl = await getDownloadURL(snapshot.ref);
-      } catch (error) {
-        console.error("Error uploading image: ", error);
-        return;
+      if (profilePic) {
+        try {
+          const storageRef = ref(storage, `images/${profilePic.name}`);
+          const snapshot = await uploadBytes(storageRef, profilePic);
+          imageUrl = await getDownloadURL(snapshot.ref);
+        } catch (error) {
+          console.error("Error uploading image: ", error);
+          return;
+        }
       }
-    }
 
       // Add user information to Firestore
       await addDoc(collection(db, "users"), {
@@ -58,7 +55,7 @@ const fileInputRef =useRef(null)
         dob: dob,
         createdAt: new Date(),
         posts: [],
-        
+
         newsletter: newsletter,
         profilepic: imageUrl,
         bio: bio,
@@ -69,18 +66,25 @@ const fileInputRef =useRef(null)
       console.error("Error registering user:", error);
     }
   }
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setCurrentImage(file);
+    setImagePreview(URL.createObjectURL(file)); // Set image preview
+    setProfilePic(e.target.files[0]);
+  };
 
   return (
     <div className="register-body">
       <header className="registration-header">
-        <h1 className="registration-home-link"><Link className="registration-app-name" to="/">
-          Blog.it
-        </Link></h1>
+        <h1 className="registration-home-link">
+          <Link className="registration-app-name" to="/">
+            Blog.it
+          </Link>
+        </h1>
 
         <h2 className="registration-title">Sign Up</h2>
-        
       </header>
-
+<main className="registration-main">
       <form
         className="registrationForm"
         id="registrationForm"
@@ -162,7 +166,7 @@ const fileInputRef =useRef(null)
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <label className="registration-label" htmlFor="profilePic">
+        {/* <label className="registration-label" htmlFor="profilePic">
           Profile Picture
         </label>
         <input
@@ -170,13 +174,34 @@ const fileInputRef =useRef(null)
           type="file"
           id="profilePic"
           name="profilePic"
-         
           ref={fileInputRef}
           onChange={(e) => {
             setProfilePic(e.target.files[0]);
           }}
-        />
-        
+        /> */}
+       
+<label HtmlFor="profilePic"  className="registration-label picture-label" id="dropcontainer">
+  Profile Picture 
+ </label>
+ <div className="drop-container-registration">
+          <input
+            className="registration-input-file"
+            type="file"
+            id="profilePic"
+          name="profilePic"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={handleImageChange}
+            required
+          ></input>
+          {imagePreview && (
+            <img src={imagePreview} alt="Preview" className="image-preview" />
+          )}
+        </div>
+
+
+
+
 
 
 
@@ -202,18 +227,20 @@ const fileInputRef =useRef(null)
               onClick={(e) => {
                 setNewsletter(!newsletter);
               }}
-             
             />
             <label className="registration-label" htmlFor="passwonewsletterrd">
               Sign up to our newsletter
             </label>
           </div>
-          <button className="signup-btn" type="submit">Sign Up</button>
+          <button className="signup-btn" type="submit">
+            Sign Up
+          </button>
         </div>
       </form>
+      </main>
     </div>
+    
   );
 }
 
 export default Register;
-

@@ -38,12 +38,19 @@
   color: #545151;
 font-weight: bold;
 }
-
+.registration-main{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  
+}
 .registrationForm {
+
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  margin: 20px 200px 0 350px;
-  width: 50vw;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px 1000px 0px 350px;
+ width: 50vw;
   gap: 40px 20px;
 }
 .registration-label {
@@ -71,4 +78,16 @@ font-weight: bold;
     background-color: rgb(130, 255, 255);
     border: 1px solid rgb(188, 245, 245);
     border-radius: 15px;
+}
+.signup-btn:hover{
+  cursor: pointer;
+}
+.drop-container-registration{
+ display:flex;
+ align-items: center;
+
+}
+
+.picture-label{
+  align-self: center;
 }
