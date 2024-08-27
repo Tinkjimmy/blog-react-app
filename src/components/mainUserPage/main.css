@@ -13,11 +13,18 @@
 .header-user-features {
   width: 300px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
+ margin-left:50%;
+ 
   align-items: center;
 
 }
+.header-user-features-main{
+margin-left: 40px;
+}
+.write-link{
 
+}
 
 .app-title {
   margin-top: 10px;
@@ -51,6 +58,7 @@ height: 50px;
 }
 .profile-img-nav:hover{
   cursor: pointer;
+
 }
 
 

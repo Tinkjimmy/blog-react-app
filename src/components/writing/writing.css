@@ -4,6 +4,7 @@
   width: 100%;
   display: flex;
  justify-content: space-between;
+ height:10vh;
 }
 .registration-link-home{
   font-weight: 100;
@@ -113,4 +114,37 @@ input[type=file]::file-selector-button:hover {
   margin-left: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
+}
+
+.off-screen-menu{
+ 
+  height:50px;
+  max-width: 150px;
+  position:fixed;
+top:45px;
+  right:-150px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center;
+  text-align: center; */
+  font-size: 1.5rem;
+  transition: .3s ease;
+  
+}
+.off-screen-menu.active{
+  right:20px;
+}
+li{
+  list-style-type: none;
+  font-size: 1rem;
+  color: #545151;
+
+}
+li:hover{
+  cursor: pointer;
+}
+ul{
+  
+  
 }

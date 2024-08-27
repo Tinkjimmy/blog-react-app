@@ -1,4 +1,4 @@
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { db, storage } from "../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, arrayUnion, updateDoc } from "firebase/firestore";
@@ -6,7 +6,7 @@ import { doc, arrayUnion, updateDoc } from "firebase/firestore";
 import "./writing.css";
 import { v4 as uuidv4 } from "uuid";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 import AuthDetails from "../AuthDetails";
 
 function Writing() {
@@ -14,7 +14,7 @@ function Writing() {
   const [currentTitle, setCurrentTitle] = useState("");
   const [currentImage, setCurrentImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-  const [allFilled,setAllFilled]=useState(false)
+  const [allFilled, setAllFilled] = useState(false);
   const fileInputRef = useRef(null);
 
   const navigate = useNavigate();
@@ -22,7 +22,10 @@ function Writing() {
   const { userData } = location.state;
   let userNameAuthor = userData.username;
   let userIdentity = userData.id;
-  let userProfileImage = userData.profileImage
+  let userProfileImage = userData.profileImage;
+
+  const hamMenuRef = useRef(null);
+  const offScreenMenuRef = useRef(null);
 
   useEffect(() => {
     if (currentTitle && currentPost && currentImage) {
@@ -32,6 +35,21 @@ function Writing() {
     }
   }, [currentTitle, currentPost, currentImage]);
 
+  useEffect(() => {
+    const handleClick = () => {
+      if (hamMenuRef.current && offScreenMenuRef.current) {
+        hamMenuRef.current.classList.toggle("active");
+        offScreenMenuRef.current.classList.toggle("active");
+      }
+    };
+
+    const hamMenuElement = hamMenuRef.current;
+    hamMenuElement.addEventListener("click", handleClick);
+
+    return () => {
+      hamMenuElement.removeEventListener("click", handleClick);
+    };
+  }, []);
 
   // Function to handle post submission
   const handlePostSubmit = async (e) => {
@@ -79,7 +97,7 @@ function Writing() {
       setCurrentTitle("");
       setCurrentImage(null);
       setImagePreview(null);
-      setAllFilled(false)
+      setAllFilled(false);
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
@@ -94,35 +112,39 @@ function Writing() {
     setImagePreview(URL.createObjectURL(file)); // Set image preview
   };
 
-
   function toProfile() {
     navigate("/profile", { state: { userData } });
   }
-  function toHome(){
-    navigate("/main")
+  function toHome() {
+    navigate("/main");
   }
-  
+
   return (
     <main className="write-main">
       <header className="writing-header">
-        <h1 className="app-title" onClick={toHome}>Blog.it</h1>
+        <h1 className="app-title" onClick={toHome}>
+          Blog.it
+        </h1>
 
-        
-        <div className="header-user-features-write">
-          
-          
-          <AuthDetails />
-          
+        <div className="header-user-features-write" ref={hamMenuRef}>
           {userData ? (
             <img
               className="profile-img profile-img-nav"
               alt="mage"
               src={userData.profileImage}
-              onClick={toProfile}
             ></img>
           ) : (
             <img className="profile-img" alt="proile ige"></img>
           )}
+
+          <div className="off-screen-menu" ref={offScreenMenuRef}>
+            <ul>
+              <li onClick={toProfile}>Profile</li>
+              <li>
+                <AuthDetails />
+              </li>
+            </ul>
+          </div>
         </div>
       </header>
       <form className="write-form" onSubmit={handlePostSubmit}>
@@ -149,25 +171,19 @@ function Writing() {
           required
         />
 
-
-        
-<label for="image" class="drop-container" id="dropcontainer">
-        <input
-          className="custom-file-upload"
-          type="file"
-          name="image"
-          id="images"
-          accept="image/*"
-          ref={fileInputRef}
-          onChange={handleImageChange}
-          required
-        ></input>
-        {imagePreview && (
-            <img
-              src={imagePreview}
-              alt="Preview"
-              className="image-preview"
-            />
+        <label htmlFor="image" className="drop-container" id="dropcontainer">
+          <input
+            className="custom-file-upload"
+            type="file"
+            name="image"
+            id="images"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={handleImageChange}
+            required
+          ></input>
+          {imagePreview && (
+            <img src={imagePreview} alt="Preview" className="image-preview" />
           )}
         </label>
 

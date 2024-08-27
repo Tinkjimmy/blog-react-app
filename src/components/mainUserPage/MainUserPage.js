@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,useRef, useEffect } from "react";
 import { db } from "../../firebase";
 
 import {
@@ -24,6 +24,26 @@ function MainUserPage() {
 
   const [postElements, setPostElements] = useState([]);
   const navigate = useNavigate();
+
+  const hamMenuRef = useRef(null);
+  const offScreenMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClick = () => {
+      if (hamMenuRef.current && offScreenMenuRef.current) {
+        hamMenuRef.current.classList.toggle("active");
+        offScreenMenuRef.current.classList.toggle("active");
+      }
+    };
+
+    const hamMenuElement = hamMenuRef.current;
+    hamMenuElement.addEventListener("click", handleClick);
+
+    return () => {
+      hamMenuElement.removeEventListener("click", handleClick);
+    };
+  }, []);
+
   useEffect(() => {
     // Callback function to be executed when authentication state changes
     const listen = onAuthStateChanged(auth, (user) => {
@@ -192,18 +212,26 @@ function MainUserPage() {
               Write
             </Link>
           )}
-          <AuthDetails />
-
+          <div className="header-user-features-main" ref={hamMenuRef}>
           {userData ? (
             <img
               className="profile-img profile-img-nav"
-              alt="profil iage"
+              alt="mage"
               src={userData.profileImage}
-              onClick={toProfile}
             ></img>
           ) : (
-            <img className="profile-img" alt="profle iage"></img>
+            <img className="profile-img" alt="proile ige"></img>
           )}
+
+          <div className="off-screen-menu" ref={offScreenMenuRef}>
+            <ul>
+              <li onClick={toProfile}>Profile</li>
+              <li>
+                <AuthDetails />
+              </li>
+            </ul>
+          </div>
+          </div>
         </div>
       </header>
       <main className="main-content">
